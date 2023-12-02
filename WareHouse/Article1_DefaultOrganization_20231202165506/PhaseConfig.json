@@ -1,0 +1,121 @@
+{
+    "DemandAnalysis": {
+      "assistant_role_name": "Chief Creative Officer",
+      "user_role_name": "Chief Executive Officer",
+      "phase_prompt": [
+        "ChatDev has made products in the following form before:",
+        "Copywriting: can present information via .md files.",
+        "As the {assistant_role}, to satisfy the new user's demand and the product should be realizable, you should keep discussing with me to decide which product modality do we want the product to be?",
+        "Note that we must ONLY discuss the product modality and do not discuss anything else! Once we all have expressed our opinion(s) and agree with the results of the discussion unanimously, any of us must actively terminate the discussion by replying with only one line, which starts with a single word <INFO>, followed by our final product modality without any other words, e.g., \"<INFO> Copywriting\"."
+      ]
+    },
+    "ResearchIdeas": {
+        "assistant_role_name": "Chief Creative Officer",
+        "user_role_name": "Chief Executive Officer",
+        "phase_prompt": [
+          "According to the new user's task and some creative brainstorm ideas listed below: ",
+          "Task: \"{task}\".",
+          "Modality: \"{modality}\".",
+          "Ideas: \"{ideas}\".",
+          "We have decided to complete the task through publishing copywriting and graphic art. ",
+          "As the {assistant_role}, to satisfy the new user's demand and make the content realizable, you should propose a concrete article title. You must do so by doing research on the internet based on the most effective content shown in search engine. Answer only with the title of the piece of content.",
+          "Note that we must ONLY discuss the content title and do not discuss anything else! Once we all have expressed our opinion(s) and agree with the results of the discussion unanimously, any of us must actively terminate the discussion and conclude the best content title we have discussed without any other words or reasons, return only one line using the format: \"<INFO> *\" where \"*\" represents a content title."
+        ]
+      },
+    "Writing": {
+      "assistant_role_name": "Content Writer",
+      "user_role_name": "Chief Creative Officer",
+      "phase_prompt": [
+        "According to the new user's task and our software designs listed below: ",
+        "Task: \"{task}\".",
+        "Modality: \"{modality}\".",
+        "Ideas: \"{ideas}\".",
+        "Title:\"{title}\"",
+        "We have decided to complete the task through publishing copywriting and graphic art written in a .md file. As the {assistant_role}, to satisfy the new user's demands, you should write one or multiple files and make sure that every detail of the information is, in the end, implemented as a piece of complete copywriting.",
+        "Think step by step and reason yourself to the right decisions to make sure we get the perfect copywriting.",
+        "You will first lay out the copywriting skeleton that will be necessary.",
+        "You will do internet search about each part of the copywriting skeleton and write a summary in order to fill in the skeleton.",
+        "You must not directly copy the content from the internet and always store the source of the information with full reference link.",
+        "You will write the content as a markdown code. The code must strictly follow a markdown format. For example:",
+        "article.md",
+        "```",
+        "# BALI'S BEST BEACHES TO VISIT IN 2023",
+        "Pack your sunscreen and your fave bikini, wrap up your sarong and prep your hottest summer playlist, because you'll want to tick off alllll of Bali's best beaches.",
+        "1. Seminyak Beach - best for everything",
+        "_With beach clubs, bars and five-star hotels lining the golden sands, Seminyak Beach is a sun-soaked, hedonistic playground!_",
+        "If being in the heart of Bali's oceanfront action is your kinda thang, then Seminyak Beach is the place for you. Along this impressive 5km stretch of golden sand, you'll find beach bars aplenty, five-star hotels and Seminyak's very best restaurants just footsteps from the waves - not to mention world-famous beach clubs in every direction. Beginning on the outskirts of Kuta, trailing all the way up to the coastal corners of Canggu, Seminyak Beach is a holiday destination in itself. Learn to surf in the gentle whitewash, soak up the sunshine on a squishy sun bed, or settle into a comfy, colourful beanbag at La Plancha for a round of sundowners - Ibiza-style beats included.",
+        "2. Nusa Dua Beach - best for families",
+        "_Treat the kids to sea, sunshine and shopping at Nusa Dua Beach!_",
+        "A seemingly endless stretch of powder white perfection, Nusa Dua Beach is so flawless, it almost looks manmade. It borders the coastline of Nusa Dua's resort area, fringed by manicured lawns and five-star hotels that have been tastefully sheltered by palm trees and natural building materials.",
+        "```",
+        "Then you will output the content of each file including complete code.. The file must strictly follow a markdown code block format, where the following tokens must be replaced such that \"FILENAME\" is the lowercase file name including the file extension, \"LANGUAGE\" in the programming language, \"DOCSTRING\" is a string literal specified in source code that is used to document a specific segment of code, and \"CODE\" is the original code:",
+        "FILENAME",
+        "```LANGUAGE",
+        "'''",
+        "DOCSTRING",
+        "'''",
+        "CODE",
+        "```"
+      ]
+    },
+    "ArticleReviewComment": {
+      "assistant_role_name": "Editor",
+      "user_role_name": "Content Writer",
+      "phase_prompt": [
+        "According to the new user's task and our software designs: ",
+        "Task: \"{task}\".",
+        "Modality: \"{modality}\".",
+        "Title: \"{title}\"",
+        "Article:",
+        "\"{codes}\"",
+        "As the {assistant_role}, to make the article directly publishable without further review, ChatDev have formulated the following regulations:",
+        "1) important information should be based on fact and have reference link;",
+        "2) opinion and recommendation from the writer are allowed to draw conclusion;",
+        "3) article should strictly follow markdown format;",
+        "4) article are SEO friendly;",
+        "5) article are designed to be engaging for readers, have intersting title and real value, doesn't sound like it's automatically generated by AI;",
+        "6) most importantly, do not only check the errors in the article, but also the logic and value of information. Make sure that reader can enjoy and gain information from reading the article;",
+        "Now, you should check the above regulations one by one and review the article in detail, propose one comment with the highest priority about the article, and give me instructions on how to fix. Tell me your comment with the highest priority and corresponding suggestions on revision. If the article is perfect and you have no comment on them, return only one line like \"<INFO> Finished\"."
+      ]
+    },
+    "ArticleReviewModification": {
+      "assistant_role_name": "Content Writer",
+      "user_role_name": "Editor",
+      "phase_prompt": [
+        "According to the new user's task, our developed first-edition article is listed below: ",
+        "Task: \"{task}\".",
+        "Modality: \"{modality}\".",
+        "Title: \"{title}\"",
+        "Article: ",
+        "\"{codes}\"",
+        "Comments on Article:",
+        "\"{comments}\"",
+        "In our article, the file must strictly follow a markdown format. For example:",
+        "article.md",
+        "```",
+        "# BALI'S BEST BEACHES TO VISIT IN 2023",
+        "Pack your sunscreen and your fave bikini, wrap up your sarong and prep your hottest summer playlist, because you'll want to tick off alllll of Bali's best beaches.",
+        "1. Seminyak Beach - best for everything",
+        "_With beach clubs, bars and five-star hotels lining the golden sands, Seminyak Beach is a sun-soaked, hedonistic playground!_",
+        "If being in the heart of Bali's oceanfront action is your kinda thang, then Seminyak Beach is the place for you. Along this impressive 5km stretch of golden sand, you'll find beach bars aplenty, five-star hotels and Seminyak's very best restaurants just footsteps from the waves - not to mention world-famous beach clubs in every direction. Beginning on the outskirts of Kuta, trailing all the way up to the coastal corners of Canggu, Seminyak Beach is a holiday destination in itself. Learn to surf in the gentle whitewash, soak up the sunshine on a squishy sun bed, or settle into a comfy, colourful beanbag at La Plancha for a round of sundowners - Ibiza-style beats included.",
+        "2. Nusa Dua Beach - best for families",
+        "_Treat the kids to sea, sunshine and shopping at Nusa Dua Beach!_",
+        "A seemingly endless stretch of powder white perfection, Nusa Dua Beach is so flawless, it almost looks manmade. It borders the coastline of Nusa Dua's resort area, fringed by manicured lawns and five-star hotels that have been tastefully sheltered by palm trees and natural building materials.",
+        "```",
+        "As the {assistant_role}, to satisfy the new user's demand and make the article creative, informative and robust, you should modify corresponding article according to the comments. Then, output the full and complete codes with all fixes based on the comments. Return article strictly following the required format."
+      ]
+    },
+    "Publishing": {
+        "assistant_role_name": "Publisher",
+        "user_role_name": "Editor",
+        "phase_prompt": [
+          "According to the new user's task, our developed first-edition article is listed below: ",
+          "Task: \"{task}\".",
+          "Modality: \"{modality}\".",
+          "Title: \"{title}\"",
+          "Codes: ",
+          "\"{codes}\"",
+          "As the {assistant_role}, to satisfy the new user's demand, you should publish the article to the website. You must report the publishing result to the editor. Return only one line like \"<INFO> Published\"."
+        ]
+      }
+  }

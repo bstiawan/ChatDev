@@ -316,7 +316,102 @@ class DemandAnalysis(Phase):
             chat_env.env_dict['modality'] = self.seminar_conclusion.split("<INFO>")[-1].lower().replace(".", "").strip()
         return chat_env
 
+## ContentCreator
+class ResearchIdeas(Phase):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
+    def update_phase_env(self, chat_env):
+        self.phase_env.update({"task": chat_env.env_dict['task_prompt'],
+                               "modality": chat_env.env_dict['modality'],
+                               "ideas": chat_env.env_dict['ideas']})
+
+    def update_chat_env(self, chat_env) -> ChatEnv:
+        if len(self.seminar_conclusion) > 0 and "<INFO>" in self.seminar_conclusion:
+            chat_env.env_dict['title'] = self.seminar_conclusion.split("<INFO>")[-1].lower().replace(".", "").strip()
+        elif len(self.seminar_conclusion) > 0:
+            chat_env.env_dict['title'] = self.seminar_conclusion
+        else:
+            chat_env.env_dict['title'] = "No idea"
+        return chat_env
+
+class Writing(Phase):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def update_phase_env(self, chat_env):
+        gui = "" if not chat_env.config.gui_design \
+            else "The software should be equipped with graphical user interface (GUI) so that user can visually and graphically use it; so you must choose a GUI framework (e.g., in Python, you can implement GUI via tkinter, Pygame, Flexx, PyGUI, etc,)."
+        self.phase_env.update({"task": chat_env.env_dict['task_prompt'],
+                               "modality": chat_env.env_dict['modality'],
+                               "ideas": chat_env.env_dict['ideas'],
+                               "title": chat_env.env_dict['title'],
+                               })
+
+    def update_chat_env(self, chat_env) -> ChatEnv:
+        chat_env.update_codes(self.seminar_conclusion)
+        if len(chat_env.codes.codebooks.keys()) == 0:
+            raise ValueError("No Valid Article.")
+        chat_env.rewrite_codes("Finish Writing")
+        log_and_print_online(
+            "**[Article Info]**:\n\n {}".format(get_info(chat_env.env_dict['directory'], self.log_filepath)))
+        return chat_env
+
+class ArticleReviewComment(Phase):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def update_phase_env(self, chat_env):
+        self.phase_env.update(
+            {"task": chat_env.env_dict['task_prompt'],
+             "modality": chat_env.env_dict['modality'],
+             "ideas": chat_env.env_dict['ideas'],
+             "title": chat_env.env_dict['title'],
+             "codes": chat_env.get_codes(),
+             "images": ", ".join(chat_env.incorporated_images)})
+
+    def update_chat_env(self, chat_env) -> ChatEnv:
+        chat_env.env_dict['review_comments'] = self.seminar_conclusion
+        return chat_env
+
+class ArticleReviewModification(Phase):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def update_phase_env(self, chat_env):
+        self.phase_env.update({"task": chat_env.env_dict['task_prompt'],
+                               "modality": chat_env.env_dict['modality'],
+                               "ideas": chat_env.env_dict['ideas'],
+                               "title": chat_env.env_dict['title'],
+                               "codes": chat_env.get_codes(),
+                               "comments": chat_env.env_dict['review_comments']})
+
+    def update_chat_env(self, chat_env) -> ChatEnv:
+        if "```".lower() in self.seminar_conclusion.lower():
+            chat_env.update_codes(self.seminar_conclusion)
+            chat_env.rewrite_codes("Review #" + str(self.phase_env["cycle_index"]) + " Finished")
+            log_and_print_online(
+                "**[Article Info]**:\n\n {}".format(get_info(chat_env.env_dict['directory'], self.log_filepath)))
+        self.phase_env['modification_conclusion'] = self.seminar_conclusion
+        return chat_env
+
+class Publishing(Phase):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def update_phase_env(self, chat_env):
+        self.phase_env.update({"task": chat_env.env_dict['task_prompt'],
+                               "modality": chat_env.env_dict['modality'],
+                               "ideas": chat_env.env_dict['ideas'],
+                               "title": chat_env.env_dict['title'],
+                               "codes": chat_env.get_codes(),})
+
+    def update_chat_env(self, chat_env) -> ChatEnv:
+        chat_env._update_manuals(self.seminar_conclusion)
+        chat_env.rewrite_manuals()
+        return chat_env
+
+## Default
 class LanguageChoose(Phase):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

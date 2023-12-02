@@ -1,0 +1,60 @@
+{
+    "chain": [
+      {
+        "phase": "DemandAnalysis",
+        "phaseType": "SimplePhase",
+        "max_turn_step": -1,
+        "need_reflect": "True"
+      },
+      {
+        "phase": "ResearchIdeas",
+        "phaseType": "SimplePhase",
+        "max_turn_step": -1,
+        "need_reflect": "False"
+      },
+      {
+        "phase": "Writing",
+        "phaseType": "SimplePhase",
+        "max_turn_step": 1,
+        "need_reflect": "False"
+      },
+      {
+        "phase": "ArticleReview",
+        "phaseType": "ComposedPhase",
+        "cycleNum": 3,
+        "Composition": [
+          {
+            "phase": "ArticleReviewComment",
+            "phaseType": "SimplePhase",
+            "max_turn_step": 1,
+            "need_reflect": "False"
+          },
+          {
+            "phase": "ArticleReviewModification",
+            "phaseType": "SimplePhase",
+            "max_turn_step": 1,
+            "need_reflect": "False"
+          }
+        ]
+      },
+      {
+        "phase": "Publishing",
+        "phaseType": "SimplePhase",
+        "max_turn_step": 1,
+        "need_reflect": "True"
+      }
+    ],
+    "recruitments": [
+      "Chief Executive Officer",
+      "Chief Creative Officer",
+      "Content Writer",
+      "Editor",
+      "Publisher"
+    ],
+    "clear_structure": "True",
+    "brainstorming": "False",
+    "gui_design": "True",
+    "git_management": "False",
+    "self_improve": "False",
+    "incremental_develop": "False"
+  }

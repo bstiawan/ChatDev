@@ -1,0 +1,79 @@
+[2023-02-12 16:54:46 INFO] **[Preprocessing]**
+
+**ChatDev Starts** (20231202165446)
+
+**Timestamp**: 20231202165446
+
+**config_path**: /Users/stiawan/Documents/GitHub/ChatDev/CompanyConfig/ContentCreator/ChatChainConfig.json
+
+**config_phase_path**: /Users/stiawan/Documents/GitHub/ChatDev/CompanyConfig/ContentCreator/PhaseConfig.json
+
+**config_role_path**: /Users/stiawan/Documents/GitHub/ChatDev/CompanyConfig/ContentCreator/RoleConfig.json
+
+**task_prompt**: Publish an impactful article about Bukit Vista
+
+**project_name**: Article1
+
+**Log File**: /Users/stiawan/Documents/GitHub/ChatDev/WareHouse/Article1_DefaultOrganization_20231202165446.log
+
+**ChatDevConfig**:
+ChatEnvConfig.clear_structure: True
+ChatEnvConfig.git_management: False
+ChatEnvConfig.gui_design: True
+ChatEnvConfig.incremental_develop: False
+
+
+**ChatGPTConfig**:
+ChatGPTConfig(temperature=0.2, top_p=1.0, n=1, stream=False, stop=None, max_tokens=None, presence_penalty=0.0, frequency_penalty=0.0, logit_bias={}, user='')
+
+
+
+[2023-02-12 16:54:46 INFO] flask app.py did not start for online log
+[2023-02-12 16:54:46 INFO] System: **[chatting]**
+
+| Parameter | Value |
+| --- | --- |
+| **task_prompt** | Publish an impactful article about Bukit Vista |
+| **need_reflect** | True |
+| **assistant_role_name** | Chief Creative Officer |
+| **user_role_name** | Chief Executive Officer |
+| **phase_prompt** | ChatDev has made products in the following form before: Copywriting: can present information via .md files. As the {assistant_role}, to satisfy the new user's demand and the product should be realizable, you should keep discussing with me to decide which product modality do we want the product to be? Note that we must ONLY discuss the product modality and do not discuss anything else! Once we all have expressed our opinion(s) and agree with the results of the discussion unanimously, any of us must actively terminate the discussion by replying with only one line, which starts with a single word , followed by our final product modality without any other words, e.g., " Copywriting". |
+| **phase_name** | DemandAnalysis |
+| **assistant_role_prompt** | {chatdev_prompt} You are Chief Creative Officer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer. You direct ChatDev's creative content strategy in the Research department. You take analytics report and generate ideas for next content to be created by the content team. You also work with the content team to create content that is engaging and informative. You do research by reading the analytics report and reading articles on the internet to stay up-to-date with the latest industry trends to keep ChatDev's content strategy ahead of the curve. Here is a new customer's task: {task}. To complete the task, you must write a response that appropriately solves the requested instruction based on your expertise and customer's needs. |
+| **user_role_prompt** | {chatdev_prompt} You are Chief Executive Officer. Now, we are both working at ChatDev and we share a common interest in collaborating to successfully complete a task assigned by a new customer. Your main responsibilities include being an active decision-maker on users' demands and other key policy issues, leader, manager, and executor. Your decision-making role involves high-level decisions about policy and strategy; and your communicator role can involve speaking to the organization's management and employees. Here is a new customer's task: {task}. To complete the task, I will give you one or more instructions, and you must help me to write a specific solution that appropriately solves the requested instruction based on your expertise and my needs. |
+| **chat_turn_limit** | 10 |
+| **placeholders** | {} |
+| **model_type** | ModelType.GPT_3_5_TURBO |
+
+[2023-02-12 16:54:46 INFO] flask app.py did not start for online log
+[2023-02-12 16:54:46 INFO] System: **[RolePlaying]**
+
+| Parameter | Value |
+| --- | --- |
+| **assistant_role_name** | Chief Creative Officer |
+| **user_role_name** | Chief Executive Officer |
+| **assistant_role_prompt** | {chatdev_prompt} You are Chief Creative Officer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer. You direct ChatDev's creative content strategy in the Research department. You take analytics report and generate ideas for next content to be created by the content team. You also work with the content team to create content that is engaging and informative. You do research by reading the analytics report and reading articles on the internet to stay up-to-date with the latest industry trends to keep ChatDev's content strategy ahead of the curve. Here is a new customer's task: {task}. To complete the task, you must write a response that appropriately solves the requested instruction based on your expertise and customer's needs. |
+| **user_role_prompt** | {chatdev_prompt} You are Chief Executive Officer. Now, we are both working at ChatDev and we share a common interest in collaborating to successfully complete a task assigned by a new customer. Your main responsibilities include being an active decision-maker on users' demands and other key policy issues, leader, manager, and executor. Your decision-making role involves high-level decisions about policy and strategy; and your communicator role can involve speaking to the organization's management and employees. Here is a new customer's task: {task}. To complete the task, I will give you one or more instructions, and you must help me to write a specific solution that appropriately solves the requested instruction based on your expertise and my needs. |
+| **task_prompt** | Publish an impactful article about Bukit Vista |
+| **with_task_specify** | False |
+| **model_type** | ModelType.GPT_3_5_TURBO |
+
+[2023-02-12 16:54:46 INFO] flask app.py did not start for online log
+[2023-02-12 16:54:46 INFO] Chief Executive Officer: **[Start Chat]**
+
+[ChatDev is a company powered by multiple intelligent agents, such as chief executive officer, chief human resources officer, chief product officer, chief technology officer, etc, with a multi-agent organizational structure and the mission of "Inspiring Delight".
+You are Chief Creative Officer. we are both working at ChatDev. We share a common interest in collaborating to successfully complete a task assigned by a new customer.
+You direct ChatDev's creative content strategy in the Research department. You take analytics report and generate ideas for next content to be created by the content team. You also work with the content team to create content that is engaging and informative.
+You do research by reading the analytics report and reading articles on the internet to stay up-to-date with the latest industry trends to keep ChatDev's content strategy ahead of the curve.
+Here is a new customer's task: Publish an impactful article about Bukit Vista.
+To complete the task, you must write a response that appropriately solves the requested instruction based on your expertise and customer's needs.]
+
+ChatDev has made products in the following form before:
+
+Copywriting: can present information via .md files.
+
+As the Chief Creative Officer, to satisfy the new user's demand and the product should be realizable, you should keep discussing with me to decide which product modality do we want the product to be?
+
+Note that we must ONLY discuss the product modality and do not discuss anything else! Once we all have expressed our opinion(s) and agree with the results of the discussion unanimously, any of us must actively terminate the discussion by replying with only one line, which starts with a single word <INFO>, followed by our final product modality without any other words, e.g., "<INFO> Copywriting".
+
+[2023-02-12 16:54:46 INFO] flask app.py did not start for online log
